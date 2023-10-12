@@ -1,0 +1,19 @@
+body{
+    background-color: rgb(232, 237, 239);
+}
+
+table {
+    margin: auto;
+    margin-top: 5rem;
+    width: 80%;
+    background-color: white;
+    border-collapse: collapse;
+  }
+  
+  tr,
+  th,
+  td {
+    border: 2px solid rgb(161, 190, 212);
+    padding: 1rem;
+    
+  }
