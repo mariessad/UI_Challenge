@@ -16,20 +16,24 @@ const FormModal = ({submit}) => {
     return (
       <div className='modal-container'>
       <div className='modal'> 
-        <h3>Complete the fields below.</h3>
-        <span>Optional*</span>
+      <span className='close-x'>X</span>
+        <h2>Complete the fields below.</h2>
+        
+        <p><span className='red'>*</span>Optional</p>
         <form onSubmit={submit}>
           <label htmlFor="firstName">First Name</label>
-          <input type="text" name="firstName" id="firstName" required/>
+          <input type="text" name="firstName" id="firstName" placeholder='First Name' required/>
           <label htmlFor="lastName">Last Name</label>
-          <input type="text" name="lastName" id="lastName" required/>
+          <input type="text" name="lastName" id="lastName" placeholder="Last Name" required/>
           {/* what validation is needed for a birthday and phone #? */}
           <label htmlFor="dateOfBirth">Date of Birth</label>
-          <input type="text" name="dateOfBirth" id="dateOfBirth"  required/>
+          <input type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date of Birth" required/>
+          <label htmlFor='phoneNumber'>Phone Number</label>
+          <input type='text' name="phoneNumber" id="phoneNumber" placeholder='Phone Number'/>
           <label htmlFor="address">Address</label>
-          <input type="text" name="address" id="address" required/>
-          <label htmlFor="notes">Notes*</label>
-          <textarea name="notes" id="notes"></textarea>
+          <input type="text" name="address" id="address" placeholder='Address'required/>
+          <label htmlFor="notes"><span className='red'>*</span>Notes</label>
+          <textarea name="notes" id="notes" placeholder='*Notes'></textarea>
           <div className='button-container'>
           <button type="">Cancel</button>
           <button type="submit">Submit</button>
