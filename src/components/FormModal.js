@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "./FormModal.css";
 
-const FormModal = ({submit}) => {
+const FormModal = ({submit, closeModal}) => {
 //   const handleFormModalSubmit = (e) => {
 //     e.preventDefault();
 
@@ -16,7 +16,7 @@ const FormModal = ({submit}) => {
     return (
       <div className='modal-container'>
       <div className='modal'> 
-      <span className='close-x'>X</span>
+      <span className='close-x' onClick={closeModal}>X</span>
         <h2>Complete the fields below.</h2>
         
         <p><span className='red'>*</span>Optional</p>
@@ -35,7 +35,7 @@ const FormModal = ({submit}) => {
           <label htmlFor="notes"><span className='red'>*</span>Notes</label>
           <textarea name="notes" id="notes" placeholder='*Notes'></textarea>
           <div className='button-container'>
-          <button type="">Cancel</button>
+          <button type="" onClick={closeModal}>Cancel</button>
           <button type="submit">Submit</button>
           </div>
         </form>

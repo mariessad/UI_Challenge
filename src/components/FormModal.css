@@ -16,10 +16,15 @@
   border-radius: 4px;
 }
 
-.close-x {
+.close-x{
   position: relative;
   left: 105%;
+  
 }
+.close-x:hover{
+    cursor: pointer;
+}
+
 
 .modal {
   padding: 2rem;

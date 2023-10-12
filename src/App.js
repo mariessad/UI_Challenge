@@ -63,7 +63,7 @@ function App() {
         +
       </button>
       {/* if modal value is true, render the modal */}
-      {openModal && <FormModal submit={onSubmitPeopleList}></FormModal>}
+      {openModal && <FormModal closeModal={() => {setOpenModal(false)}} submit={onSubmitPeopleList}></FormModal>}
     </div>
   );
 }
