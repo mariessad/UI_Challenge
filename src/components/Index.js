@@ -4,10 +4,12 @@ import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 
 const Index = ({ data, editRow, deleteRow }) => {
 
-    const handleDeleteRow = (id) => {
-        
-        deleteRow(id)
-    }
+  const handleDeleteRow = (id) => {
+    deleteRow(id);
+    // refresh page to show that the person has been deleted
+    window.location.reload(false);
+  };
+
   return (
     <React.Fragment>
       <h1>Add a favorite person.</h1>
@@ -26,7 +28,7 @@ const Index = ({ data, editRow, deleteRow }) => {
         <tbody>
           {data.map((row) => (
             <tr key={row.id}>
-            {console.log(row.id)}
+              {console.log(row.id)}
               <td>{row.firstName}</td>
               <td>{row.lastName}</td>
               <td>{row.dateOfBirth}</td>
