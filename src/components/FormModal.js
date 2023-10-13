@@ -1,47 +1,116 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import "./FormModal.css";
 
-const FormModal = ({submit, closeModal}) => {
-//   const handleFormModalSubmit = (e) => {
-//     e.preventDefault();
+const FormModal = ({ onSubmit, closeModal }) => {
+  //   const [newPerson, setNewPerson] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [notes, setNotes] = useState("");
 
-//     const body = {
-//       firstName: e.target.firstName.value,
-//       lastName: e.target.lastName.value,
-//       dateOfBirth: e.target.dateOfBirth.value,
-//       phoneNumber: e.target.phoneNumber.value,
-//       address: e.target.address.value,
-//       notes: e.target.notes.value,
-//     };
-    return (
-      <div className='modal-container'>
-      <div className='modal'> 
-      <span className='close-x' onClick={closeModal}>X</span>
+
+
+  const handleFormModalSubmit = (e) => {
+    //prevent refresh
+    e.preventDefault();
+
+    const personRow = {
+      firstName,
+      lastName,
+      dateOfBirth,
+      phoneNumber,
+      address,
+      notes,
+    };
+
+    console.log(personRow)
+    // onSubmit();
+  };
+
+  return (
+    <div className="modal-container">
+      <div className="modal">
+        <span className="close-x" onClick={closeModal}>
+          X
+        </span>
         <h2>Complete the fields below.</h2>
-        
-        <p><span className='red'>*</span>Optional</p>
-        <form onSubmit={submit}>
+
+        <p>
+          <span className="red">*</span>Optional
+        </p>
+        <form onSubmit={handleFormModalSubmit}>
           <label htmlFor="firstName">First Name</label>
-          <input type="text" name="firstName" id="firstName" placeholder='First Name' required/>
+          <input
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            type="text"
+            name="firstName"
+            id="firstName"
+            placeholder="First Name"
+            required
+          />
           <label htmlFor="lastName">Last Name</label>
-          <input type="text" name="lastName" id="lastName" placeholder="Last Name" required/>
+          <input
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            type="text"
+            name="lastName"
+            id="lastName"
+            placeholder="Last Name"
+            required
+          />
           {/* what validation is needed for a birthday and phone #? */}
           <label htmlFor="dateOfBirth">Date of Birth</label>
-          <input type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date of Birth" required/>
-          <label htmlFor='phoneNumber'>Phone Number</label>
-          <input type='text' name="phoneNumber" id="phoneNumber" placeholder='Phone Number'/>
+          <input
+            value={dateOfBirth}
+            onChange={(e) => setDateOfBirth(e.target.value)}
+            type="text"
+            name="dateOfBirth"
+            id="dateOfBirth"
+            placeholder="Date of Birth"
+            required
+          />
+          <label htmlFor="phoneNumber">Phone Number</label>
+          <input
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            type="text"
+            name="phoneNumber"
+            id="phoneNumber"
+            placeholder="Phone Number"
+          />
           <label htmlFor="address">Address</label>
-          <input type="text" name="address" id="address" placeholder='Address'required/>
-          <label htmlFor="notes"><span className='red'>*</span>Notes</label>
-          <textarea name="notes" id="notes" placeholder='*Notes'></textarea>
-          <div className='button-container'>
-          <button type="" onClick={closeModal}>Cancel</button>
-          <button type="submit">Submit</button>
+          <input
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            type="text"
+            name="address"
+            id="address"
+            placeholder="Address"
+            required
+          />
+          <label htmlFor="notes">
+            <span className="red">*</span>Notes
+          </label>
+          <textarea
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+            name="notes"
+            id="notes"
+            placeholder="*Notes"
+          ></textarea>
+          <div className="button-container">
+            <button type="" onClick={closeModal}>
+              Cancel
+            </button>
+            <button type="submit">Submit</button>
           </div>
         </form>
-        </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
 export default FormModal;

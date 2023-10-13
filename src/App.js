@@ -30,15 +30,10 @@ function App() {
   }, []);
 
   // submit new person row
-  const onSubmitPeopleList = async (e) => {
+  const onSubmitPeopleList = async () => {
     try {
       await addDoc(peopleCollectionRef, {
-        firstName: e.target.firstName.value,
-        lastName: e.target.lastName.value,
-        dateOfBirth: e.target.dateOfBirth.value,
-        phoneNumber: e.target.phoneNumber.value,
-        address: e.target.address.value,
-        notes: e.target.notes.value,
+      //  pass the data of the new person here
       });
     } catch (err) {
       console.error(err);
@@ -63,7 +58,7 @@ function App() {
         +
       </button>
       {/* if modal value is true, render the modal */}
-      {openModal && <FormModal closeModal={() => {setOpenModal(false)}} submit={onSubmitPeopleList}></FormModal>}
+      {openModal && <FormModal closeModal={() => {setOpenModal(false)}} onSubmit={onSubmitPeopleList}></FormModal>}
     </div>
   );
 }
