@@ -13,28 +13,31 @@ function App() {
   // connection to firebase collection
   const peopleCollectionRef = collection(db, "people");
 
-  useEffect(() => {
-    const getPeopleList = async () => {
-      // read the data from database and set the data
-      try {
-        const data = await getDocs(peopleCollectionRef);
-        const filteredData = data.docs.map((doc) => ({ ...doc.data() }));
-        console.log(filteredData);
-        setPerson(filteredData);
-      } catch (err) {
-        console.error(err);
-      }
-    };
+  const getPeopleList = async () => {
+    // read the data from database and set the data
+    try {
+      const data = await getDocs(peopleCollectionRef);
+      const filteredData = data.docs.map((doc) => ({ ...doc.data() }));
+      console.log(filteredData);
+      setPerson(filteredData);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
+  useEffect(() => {
     getPeopleList();
   }, []);
 
   // submit new person row
-  const onSubmitPeopleList = async () => {
+  const onSubmitPeopleList = async (data) => {
     try {
       await addDoc(peopleCollectionRef, {
-      //  pass the data of the new person here
+        //  pass the data of the new person here
+        ...data
       });
+
+      getPeopleList();  
     } catch (err) {
       console.error(err);
     }
@@ -58,7 +61,14 @@ function App() {
         +
       </button>
       {/* if modal value is true, render the modal */}
-      {openModal && <FormModal closeModal={() => {setOpenModal(false)}} onSubmit={onSubmitPeopleList}></FormModal>}
+      {openModal && (
+        <FormModal
+          closeModal={() => {
+            setOpenModal(false);
+          }}
+          onSubmit={onSubmitPeopleList}
+        ></FormModal>
+      )}
     </div>
   );
 }

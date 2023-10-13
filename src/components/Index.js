@@ -20,7 +20,8 @@ const Index = ({ data, editRow, deleteRow }) => {
         </thead>
         <tbody>
           {data.map((row) => (
-            <tr key={row.personID}>
+            <tr key={row.people}>
+            {console.log(row)}
               <td>{row.firstName}</td>
               <td>{row.lastName}</td>
               <td>{row.dateOfBirth}</td>

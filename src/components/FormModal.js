@@ -26,7 +26,7 @@ const FormModal = ({ onSubmit, closeModal }) => {
     };
 
     console.log(personRow)
-    // onSubmit();
+    onSubmit(personRow);
   };
 
   return (
