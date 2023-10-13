@@ -3,6 +3,11 @@ import "./Index.css";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 
 const Index = ({ data, editRow, deleteRow }) => {
+
+    const handleDeleteRow = (id) => {
+        
+        deleteRow(id)
+    }
   return (
     <React.Fragment>
       <h1>Add a favorite person.</h1>
@@ -20,8 +25,8 @@ const Index = ({ data, editRow, deleteRow }) => {
         </thead>
         <tbody>
           {data.map((row) => (
-            <tr key={row.people}>
-            {console.log(row)}
+            <tr key={row.id}>
+            {console.log(row.id)}
               <td>{row.firstName}</td>
               <td>{row.lastName}</td>
               <td>{row.dateOfBirth}</td>
@@ -35,9 +40,8 @@ const Index = ({ data, editRow, deleteRow }) => {
                 />
                 <BsFillTrashFill
                   className="delete-btn"
-                  onClick={() => deleteRow()}
+                  onClick={() => handleDeleteRow(row.id)}
                 />
-                {/* delete and edit button go here */}
               </td>
             </tr>
           ))}
