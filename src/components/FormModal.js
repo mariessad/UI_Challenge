@@ -61,12 +61,14 @@ const FormModal = ({ onSubmit, closeModal }) => {
           {/* what validation is needed for a birthday and phone #? */}
           <label htmlFor="dateOfBirth">Date of Birth</label>
           <input
+            className="date-picker"
             value={dateOfBirth}
             onChange={(e) => setDateOfBirth(e.target.value)}
             type="date"
             name="dateOfBirth"
             id="dateOfBirth"
-            placeholder="Date of Birth"
+            // format=""
+            // placeholder="Date of Birth"
             required
           />
           <label htmlFor="phoneNumber">Phone Number</label>

@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "./Index.css";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 
-const Index = ({ data, editRow, deleteRow }) => {
+const Index = ({ data, editRow, deleteRow, getPeople }) => {
 
   const handleDeleteRow = (id) => {
     deleteRow(id);
     // refresh page to show that the person has been deleted
-    window.location.reload(false);
+    // window.location.reload(false);
+    getPeople();
   };
 
   return (
@@ -38,7 +39,7 @@ const Index = ({ data, editRow, deleteRow }) => {
               <td className="btn-container">
                 <BsFillPencilFill
                   className="edit-btn"
-                  onClick={() => editRow()}
+                  onClick={() => editRow(row.id)}
                 />
                 <BsFillTrashFill
                   className="delete-btn"

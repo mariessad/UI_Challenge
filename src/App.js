@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Index from "./components/Index.js";
 import FormModal from "./components/FormModal.js";
+// database
 import { db } from "./firebase-config/firebase.js";
 import { getDocs, collection, addDoc, deleteDoc, doc } from "firebase/firestore";
 import "./App.css";
@@ -19,7 +20,7 @@ function App() {
     try {
       const data = await getDocs(peopleCollectionRef);
       const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      console.log(filteredData);
+      // console.log(filteredData);
       setPerson(filteredData);
     } catch (err) {
       console.error(err);
@@ -63,6 +64,7 @@ function App() {
         data={person}
         editRow={editPersonRow}
         deleteRow={deletePersonRow}
+        getPeople={getPeopleList}
       ></Index>
       <button onClick={() => setOpenModal(true)} className="btn">
         +

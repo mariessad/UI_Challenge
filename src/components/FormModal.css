@@ -16,22 +16,21 @@
   border-radius: 4px;
 }
 
-.close-x{
+.close-x {
   position: relative;
   left: 105%;
-  
 }
-.close-x:hover{
-    cursor: pointer;
+.close-x:hover {
+  cursor: pointer;
 }
-
 
 .modal {
   padding: 2rem;
   width: 90%;
 }
 
-.modal input[type="text"],.modal input[type="date"],
+.modal input[type="text"],
+.date-picker,
 textarea {
   width: 100%;
   padding: 12px 8px;
@@ -54,6 +53,6 @@ textarea {
   margin-right: 12px;
 }
 
-.red{
-    color: red;
+.red {
+  color: red;
 }
