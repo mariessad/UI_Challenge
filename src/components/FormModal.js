@@ -73,7 +73,7 @@ const FormModal = ({ onSubmit, closeModal }) => {
           />
           <label htmlFor="phoneNumber">Phone Number</label>
           <PatternFormat
-            format="###-####-###"
+            format="###-###-####"
             allowEmptyFormatting
             mask="_"
             value={phoneNumber}
