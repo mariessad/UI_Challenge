@@ -1,19 +1,38 @@
-body{
-    background-color: rgb(232, 237, 239);
+body {
+  background-color: rgb(232, 237, 239);
 }
 
 table {
-    margin: auto;
-    margin-top: 5rem;
-    width: 80%;
-    background-color: white;
-    border-collapse: collapse;
-  }
-  
-  tr,
-  th,
-  td {
-    border: 2px solid rgb(161, 190, 212);
-    padding: 1rem;
-    
-  }
+  margin: auto;
+  margin-top: 5rem;
+  width: 80%;
+  background-color: white;
+  border-collapse: collapse;
+}
+
+tr,
+th,
+td {
+  border: 2px solid rgb(161, 190, 212);
+  padding: 1rem;
+}
+
+.table-row:hover {
+  background-color: rgb(232, 237, 239);
+}
+
+.btn-container {
+  display: flex;
+  border: none;
+  justify-content: space-between;
+}
+.edit-btn,
+.delete-btn {
+  color: rgb(161, 190, 212);
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  cursor: pointer;
+  color: rgb(26, 26, 26);
+}

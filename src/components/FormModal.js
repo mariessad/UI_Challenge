@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import "./FormModal.css";
 
 const FormModal = ({ onSubmit, closeModal }) => {
-  //   const [newPerson, setNewPerson] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
-
-
 
   const handleFormModalSubmit = (e) => {
     //prevent refresh
@@ -36,7 +33,6 @@ const FormModal = ({ onSubmit, closeModal }) => {
           X
         </span>
         <h2>Complete the fields below.</h2>
-
         <p>
           <span className="red">*</span>Optional
         </p>

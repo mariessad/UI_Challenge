@@ -27,7 +27,7 @@ const Index = ({ data, editRow, deleteRow }) => {
         </thead>
         <tbody>
           {data.map((row) => (
-            <tr key={row.id}>
+            <tr key={row.id} className="table-row">
               {console.log(row.id)}
               <td>{row.firstName}</td>
               <td>{row.lastName}</td>
@@ -35,7 +35,7 @@ const Index = ({ data, editRow, deleteRow }) => {
               <td>{row.phoneNumber}</td>
               <td>{row.address}</td>
               <td>{row.notes}</td>
-              <td>
+              <td className="btn-container">
                 <BsFillPencilFill
                   className="edit-btn"
                   onClick={() => editRow()}
