@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { PatternFormat } from "react-number-format";
 import "./FormModal.css";
 
 const FormModal = ({ onSubmit, closeModal }) => {
@@ -62,14 +63,17 @@ const FormModal = ({ onSubmit, closeModal }) => {
           <input
             value={dateOfBirth}
             onChange={(e) => setDateOfBirth(e.target.value)}
-            type="text"
+            type="date"
             name="dateOfBirth"
             id="dateOfBirth"
             placeholder="Date of Birth"
             required
           />
           <label htmlFor="phoneNumber">Phone Number</label>
-          <input
+          <PatternFormat
+            format="###-####-###"
+            allowEmptyFormatting
+            mask="_"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="text"
@@ -77,6 +81,7 @@ const FormModal = ({ onSubmit, closeModal }) => {
             id="phoneNumber"
             placeholder="Phone Number"
           />
+
           <label htmlFor="address">Address</label>
           <input
             value={address}

@@ -31,7 +31,7 @@
   width: 90%;
 }
 
-.modal input[type="text"],
+.modal input[type="text"],.modal input[type="date"],
 textarea {
   width: 100%;
   padding: 12px 8px;
