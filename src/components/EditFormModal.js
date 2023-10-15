@@ -2,16 +2,24 @@ import React, { useState } from "react";
 import { PatternFormat } from "react-number-format";
 import "./EditFormModal.css";
 
-const EditFormModal = ({ closeModal, editRow, data, onePerson }) => {
-  const [firstName, setFirstName] = useState(editRow.firstName);
+const EditFormModal = ({ closeModal, editRow, data, onePerson, personID }) => {
+  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
 
-//   console.log(data)
+  console.log(data)
 console.log(onePerson)
+
+// const [person] = onePerson;
+// console.log(person)
+
+// const handleDataValue = (value) => {
+//     setFirstName(value)
+
+// }
   const handleFormModalUpdate = (e) => {
     //prevent refresh
     e.preventDefault();
@@ -24,8 +32,8 @@ console.log(onePerson)
       address,
       notes,
     };
-
-    editRow(personRow);
+// console.log(personRow)
+    editRow(personRow, personID);
   };
 
   return (
@@ -34,7 +42,7 @@ console.log(onePerson)
         <span className="close-x" onClick={closeModal}>
           X
         </span>
-        <h2>Complete the fields below.</h2>
+        <h2>Edit favorite person.</h2>
         <p>
           <span className="red">*</span>Optional
         </p>
@@ -45,7 +53,8 @@ console.log(onePerson)
         >
           <label htmlFor="firstName">First Name</label>
           <input
-            value={onePerson.firstName}
+            defaultValue={onePerson.firstName}
+            // value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             type="text"
             name="firstName"
@@ -55,7 +64,8 @@ console.log(onePerson)
           />
           <label htmlFor="lastName">Last Name</label>
           <input
-            value={onePerson.lastName}
+            // value={onePerson.lastName}
+            defaultValue={onePerson.lastName}
             onChange={(e) => setLastName(e.target.value)}
             type="text"
             name="lastName"
@@ -67,7 +77,8 @@ console.log(onePerson)
           <label htmlFor="dateOfBirth">Date of Birth</label>
           <input
             className="date-picker"
-            value={onePerson.dateOfBirth}
+            // value={onePerson.dateOfBirth}
+            defaultValue={onePerson.dateOfBirth}
             onChange={(e) => setDateOfBirth(e.target.value)}
             type="date"
             name="dateOfBirth"
@@ -81,7 +92,8 @@ console.log(onePerson)
             format="###-###-####"
             allowEmptyFormatting
             mask="_"
-            value={onePerson.phoneNumber}
+            // value={onePerson.phoneNumber}
+            defaultValue={onePerson.phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="text"
             name="phoneNumber"
@@ -91,7 +103,8 @@ console.log(onePerson)
 
           <label htmlFor="address">Address</label>
           <input
-            value={onePerson.address}
+            // value={onePerson.address}
+            defaultValue={onePerson.address}
             onChange={(e) => setAddress(e.target.value)}
             type="text"
             name="address"
@@ -103,7 +116,8 @@ console.log(onePerson)
             <span className="red">*</span>Notes
           </label>
           <textarea
-            value={onePerson.notes}
+            // value={onePerson.notes}
+            defaultValue={onePerson.notes}
             onChange={(e) => setNotes(e.target.value)}
             name="notes"
             id="notes"

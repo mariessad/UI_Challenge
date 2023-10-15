@@ -20,6 +20,7 @@ function App() {
   const [editRow, setEditRow] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
+  const [personID, setPersonID] = useState("");
   // const [editSubmit, setEditSubmit] = useState(false);
 
   // connection to firebase collection
@@ -59,14 +60,15 @@ function App() {
   };
 
   // edit person
-  const editPersonRow = async (id, data) => {
-    // setOpenEditModal(true);
-    const personDoc = doc(db, "people", id);
-    console.log(data);
-    // console.log(personDoc);
+  const editPersonRow = async (id, personID) => {
+    console.log(personID);
+    console.log(id)
+    const personDoc = doc(db, "people", personID);
+    // console.log(data);
+    console.log(personDoc);
     // update doc with the new data
     try {
-      await updateDoc(personDoc, data);
+      await updateDoc(personDoc, id);
       // getPeopleList();
     } catch (err) {
       console.log(err);
@@ -82,6 +84,7 @@ function App() {
       const filteredPersonData = personData.data();
       // give person data to edit form
       setEditRow(filteredPersonData);
+      setPersonID(id);
     } catch (err) {
       console.log(err);
     }
@@ -125,6 +128,7 @@ function App() {
           data={person}
           getOnePerson={getOnePersonRow}
           onePerson={editRow}
+          personID={personID}
         />
       )}
     </div>
