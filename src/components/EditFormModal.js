@@ -48,12 +48,13 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
           <label htmlFor="firstName">First Name</label>
           <input
             defaultValue={onePerson.firstName}
-            // value={firstName}
+            // value={onePerson.firstName}
             onChange={(e) => setFirstName(e.target.value)}
             type="text"
             name="firstName"
             id="firstName"
             placeholder="First Name"
+            minLength={3}
             required
           />
           <label htmlFor="lastName">Last Name</label>
@@ -65,9 +66,9 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
             name="lastName"
             id="lastName"
             placeholder="Last Name"
+            minLength={3}
             required
           />
-          {/* what validation is needed for a birthday and phone #? */}
           <label htmlFor="dateOfBirth">Date of Birth</label>
           <input
             className="date-picker"
@@ -77,8 +78,8 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
             type="date"
             name="dateOfBirth"
             id="dateOfBirth"
-            // format=""
-            // placeholder="Date of Birth"
+            min="1900-01-01"
+            max="2023-01-01"
             required
           />
           <label htmlFor="phoneNumber">Phone Number</label>
@@ -86,6 +87,7 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
             format="###-###-####"
             allowEmptyFormatting
             mask="_"
+            patternChar="#"
             value={onePerson.phoneNumber}
             defaultValue={onePerson.phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
@@ -93,6 +95,7 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
             name="phoneNumber"
             id="phoneNumber"
             placeholder="Phone Number"
+            required
           />
 
           <label htmlFor="address">Address</label>

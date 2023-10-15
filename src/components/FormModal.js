@@ -2,13 +2,39 @@ import React, { useState } from "react";
 import { PatternFormat } from "react-number-format";
 import "./FormModal.css";
 
-const FormModal = ({ onSubmit, closeModal, data }) => {
+const FormModal = ({ onSubmit, closeModal }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
+
+//   const validateFormInputs =(inputValues) => {
+//     let errors ={};
+//     if (inputValues.firstName.length <2){
+//       errors.firstName = "First Name is too short"
+//     }
+//     if(inputValues.lastName.length < 2){
+//       errors.lastName = "Last Name is too short"
+//     }
+//     if (inputValues.setDateOfBirth === null || undefined){
+//       errors.dateOfBirth = "Please enter birthday in dd/mm/yyyy format"
+//     }
+
+//     if(inputValues.phoneNumber === null || undefined){
+//       errors.phoneNumber = "Please enter 10-digit phone number"
+//     }
+//     if(inputValues.address === "null" || undefined){
+//       errors.address = "please enter full address, number, street, city, state, zipcode"
+//     }
+
+//     return errors;
+//   }
+
+// const handleFormChangeErrors = (e) => {
+//   setFirstName(e.target.value)
+// }
 
   const handleFormModalSubmit = (e) => {
     //prevent refresh
@@ -50,6 +76,7 @@ const FormModal = ({ onSubmit, closeModal, data }) => {
             name="firstName"
             id="firstName"
             placeholder="First Name"
+            minLength={3}
             required
           />
           <label htmlFor="lastName">Last Name</label>
@@ -60,6 +87,7 @@ const FormModal = ({ onSubmit, closeModal, data }) => {
             name="lastName"
             id="lastName"
             placeholder="Last Name"
+            minLength={3}
             required
           />
           {/* what validation is needed for a birthday and phone #? */}
@@ -71,8 +99,8 @@ const FormModal = ({ onSubmit, closeModal, data }) => {
             type="date"
             name="dateOfBirth"
             id="dateOfBirth"
-            // format=""
-            // placeholder="Date of Birth"
+            min="1900-01-01"
+            max="2023-01-01"
             required
           />
           <label htmlFor="phoneNumber">Phone Number</label>
@@ -80,12 +108,14 @@ const FormModal = ({ onSubmit, closeModal, data }) => {
             format="###-###-####"
             allowEmptyFormatting
             mask="_"
+            patternChar="#"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="text"
             name="phoneNumber"
             id="phoneNumber"
             placeholder="Phone Number"
+            required
           />
 
           <label htmlFor="address">Address</label>

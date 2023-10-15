@@ -55,6 +55,7 @@ function App() {
       });
 
       getPeopleList();
+      setOpenModal(false);
     } catch (err) {
       console.error(err);
     }
@@ -112,7 +113,7 @@ function App() {
             setOpenModal(false);
           }}
           onSubmit={onSubmitPersonRow}
-          data={person}
+          // data={person}
         ></FormModal>
       )}
 
