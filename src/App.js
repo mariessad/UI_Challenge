@@ -18,10 +18,11 @@ import "./App.css";
 function App() {
   const [person, setPerson] = useState([]);
   const [editRow, setEditRow] = useState([]);
+  // open/close modal states
   const [openModal, setOpenModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
+  // this state keeps track of the Id of the personRow clicked on in Index Form component
   const [personID, setPersonID] = useState("");
-  // const [editSubmit, setEditSubmit] = useState(false);
 
   // connection to firebase collection
   const peopleCollectionRef = collection(db, "people");
@@ -49,7 +50,7 @@ function App() {
   const onSubmitPersonRow = async (data) => {
     try {
       await addDoc(peopleCollectionRef, {
-        //  pass the data of the new person here
+        //  pass the data of the new person
         ...data,
       });
 
@@ -61,15 +62,11 @@ function App() {
 
   // edit person
   const editPersonRow = async (id, personID) => {
-    console.log(personID);
-    console.log(id)
     const personDoc = doc(db, "people", personID);
-    // console.log(data);
     console.log(personDoc);
     // update doc with the new data
     try {
       await updateDoc(personDoc, id);
-      // getPeopleList();
     } catch (err) {
       console.log(err);
     }
@@ -123,9 +120,10 @@ function App() {
         <EditFormModal
           closeModal={() => {
             setOpenEditModal(false);
+            window.location.reload(true);
           }}
           editRow={editPersonRow}
-          data={person}
+          // data={person}
           getOnePerson={getOnePersonRow}
           onePerson={editRow}
           personID={personID}

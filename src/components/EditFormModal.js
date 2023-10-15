@@ -2,19 +2,13 @@ import React, { useState } from "react";
 import { PatternFormat } from "react-number-format";
 import "./EditFormModal.css";
 
-const EditFormModal = ({ closeModal, editRow, data, onePerson, personID }) => {
+const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
-
-  console.log(data)
-console.log(onePerson)
-
-// const [person] = onePerson;
-// console.log(person)
 
 // const handleDataValue = (value) => {
 //     setFirstName(value)
@@ -92,7 +86,7 @@ console.log(onePerson)
             format="###-###-####"
             allowEmptyFormatting
             mask="_"
-            // value={onePerson.phoneNumber}
+            value={onePerson.phoneNumber}
             defaultValue={onePerson.phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="text"
