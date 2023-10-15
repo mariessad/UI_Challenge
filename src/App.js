@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from "react";
 import Index from "./components/Index.js";
 import FormModal from "./components/FormModal.js";
+import EditFormModal from "./components/EditFormModal.js";
 // database
 import { db } from "./firebase-config/firebase.js";
-import { getDocs, collection, addDoc, deleteDoc, doc } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import "./App.css";
 
 function App() {
   const [person, setPerson] = useState([]);
-  const [editRow, setEditRow] = useState(null);
+  // const [editRow, setEditRow] = useState(null);
   const [openModal, setOpenModal] = useState(false);
-
+  const [openEditModal, setOpenEditModal] = useState(false);
+  // const [editSubmit, setEditSubmit] = useState(false);
 
   // connection to firebase collection
   const peopleCollectionRef = collection(db, "people");
@@ -19,7 +28,10 @@ function App() {
     // read the data from database and set the data
     try {
       const data = await getDocs(peopleCollectionRef);
-      const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
       // console.log(filteredData);
       setPerson(filteredData);
     } catch (err) {
@@ -46,16 +58,25 @@ function App() {
   };
 
   // edit person
-  const editPersonRow = (row) => {
-    setEditRow(row);
-    // open modal to edit row
+  const editPersonRow = async (id, data) => {
+    setOpenEditModal(true);
+    const personDoc = doc(db, "people", id);
+    console.log({ data });
+    console.log(personDoc);
+    // update doc with the new data
+    try {
+      await updateDoc(personDoc, data);
+      // getPeopleList();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // delete person
   const deletePersonRow = async (id) => {
     // delete doc takes in doc from firestore
     const personDoc = doc(db, "people", id);
-    await deleteDoc(personDoc)
+    await deleteDoc(personDoc);
   };
 
   return (
@@ -76,7 +97,18 @@ function App() {
             setOpenModal(false);
           }}
           onSubmit={onSubmitPersonRow}
+          data={person}
         ></FormModal>
+      )}
+
+      {openEditModal && (
+        <EditFormModal
+          closeModal={() => {
+            setOpenEditModal(false);
+          }}
+          editRow={editPersonRow}
+          data={person}
+        />
       )}
     </div>
   );

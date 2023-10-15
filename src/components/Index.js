@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import "./Index.css";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 
-const Index = ({ data, editRow, deleteRow, getPeople }) => {
+const Index = ({ data, editRow, deleteRow, getPeople}) => {
 
   const handleDeleteRow = (id) => {
     deleteRow(id);
     // refresh page to show that the person has been deleted
-    // window.location.reload(false);
     getPeople();
   };
 
@@ -29,7 +28,6 @@ const Index = ({ data, editRow, deleteRow, getPeople }) => {
         <tbody>
           {data.map((row) => (
             <tr key={row.id} className="table-row">
-              {console.log(row.id)}
               <td>{row.firstName}</td>
               <td>{row.lastName}</td>
               <td>{row.dateOfBirth}</td>

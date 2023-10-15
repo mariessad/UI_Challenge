@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { PatternFormat } from "react-number-format";
-import "./FormModal.css";
+import "./EditFormModal.css";
 
-const FormModal = ({ onSubmit, closeModal, data }) => {
+const EditFormModal = ({ closeModal, editRow, data }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
@@ -10,7 +10,8 @@ const FormModal = ({ onSubmit, closeModal, data }) => {
   const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
 
-  const handleFormModalSubmit = (e) => {
+  console.log(data)
+  const handleFormModalUpdate = (e) => {
     //prevent refresh
     e.preventDefault();
 
@@ -23,8 +24,7 @@ const FormModal = ({ onSubmit, closeModal, data }) => {
       notes,
     };
 
-    // console.log(personRow)
-    onSubmit(personRow);
+    editRow(personRow);
   };
 
   return (
@@ -39,12 +39,12 @@ const FormModal = ({ onSubmit, closeModal, data }) => {
         </p>
 
         <form
-          onSubmit={handleFormModalSubmit}
+          // if the edit icon has been clicked,
+          onSubmit={handleFormModalUpdate}
         >
-          {data.map((item) => item.id)}
           <label htmlFor="firstName">First Name</label>
           <input
-            value={firstName}
+            value={data.firstName}
             onChange={(e) => setFirstName(e.target.value)}
             type="text"
             name="firstName"
@@ -120,4 +120,4 @@ const FormModal = ({ onSubmit, closeModal, data }) => {
   );
 };
 
-export default FormModal;
+export default EditFormModal;
