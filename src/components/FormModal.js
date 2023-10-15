@@ -41,7 +41,7 @@ const FormModal = ({ onSubmit, closeModal, data }) => {
         <form
           onSubmit={handleFormModalSubmit}
         >
-          {data.map((item) => item.id)}
+          {/* {data.map((item) => item.id)} */}
           <label htmlFor="firstName">First Name</label>
           <input
             value={firstName}

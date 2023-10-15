@@ -11,12 +11,13 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  getDoc,
 } from "firebase/firestore";
 import "./App.css";
 
 function App() {
   const [person, setPerson] = useState([]);
-  // const [editRow, setEditRow] = useState(null);
+  const [editRow, setEditRow] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   // const [editSubmit, setEditSubmit] = useState(false);
@@ -59,14 +60,28 @@ function App() {
 
   // edit person
   const editPersonRow = async (id, data) => {
-    setOpenEditModal(true);
+    // setOpenEditModal(true);
     const personDoc = doc(db, "people", id);
-    console.log({ data });
-    console.log(personDoc);
+    console.log(data);
+    // console.log(personDoc);
     // update doc with the new data
     try {
       await updateDoc(personDoc, data);
       // getPeopleList();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // get one person doc by id
+  const getOnePersonRow = async (id) => {
+    setOpenEditModal(true);
+    const personDoc = doc(db, "people", id);
+    try {
+      const personData = await getDoc(personDoc);
+      const filteredPersonData = personData.data();
+      // give person data to edit form
+      setEditRow(filteredPersonData);
     } catch (err) {
       console.log(err);
     }
@@ -83,7 +98,7 @@ function App() {
     <div className="App">
       <Index
         data={person}
-        editRow={editPersonRow}
+        getOnePerson={getOnePersonRow}
         deleteRow={deletePersonRow}
         getPeople={getPeopleList}
       ></Index>
@@ -108,6 +123,8 @@ function App() {
           }}
           editRow={editPersonRow}
           data={person}
+          getOnePerson={getOnePersonRow}
+          onePerson={editRow}
         />
       )}
     </div>

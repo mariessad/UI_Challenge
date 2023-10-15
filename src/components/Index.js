@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import "./Index.css";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 
-const Index = ({ data, editRow, deleteRow, getPeople}) => {
+const Index = ({ data, getOnePerson, deleteRow, getPeople}) => {
+
+  // pass the id data to the app component
+  const handleEditRow = (id) => {
+    getOnePerson(id);
+  }
 
   const handleDeleteRow = (id) => {
     deleteRow(id);
@@ -37,7 +42,7 @@ const Index = ({ data, editRow, deleteRow, getPeople}) => {
               <td className="btn-container">
                 <BsFillPencilFill
                   className="edit-btn"
-                  onClick={() => editRow(row.id)}
+                  onClick={() => handleEditRow(row.id)}
                 />
                 <BsFillTrashFill
                   className="delete-btn"
