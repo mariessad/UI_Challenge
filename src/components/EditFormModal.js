@@ -3,7 +3,7 @@ import { PatternFormat } from "react-number-format";
 import "./EditFormModal.css";
 
 const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
-  const [firstName, setFirstName] = useState(personID);
+  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
