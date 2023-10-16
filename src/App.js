@@ -35,7 +35,7 @@ function App() {
         ...doc.data(),
         id: doc.id,
       }));
-      // console.log(filteredData);
+
       setPerson(filteredData);
     } catch (err) {
       console.error(err);
@@ -64,10 +64,11 @@ function App() {
   // edit person
   const editPersonRow = async (id, personID) => {
     const personDoc = doc(db, "people", personID);
-    console.log(personDoc);
     // update doc with the new data
     try {
       await updateDoc(personDoc, id);
+      getPeopleList();
+      setOpenEditModal(false);
     } catch (err) {
       console.log(err);
     }
@@ -113,7 +114,6 @@ function App() {
             setOpenModal(false);
           }}
           onSubmit={onSubmitPersonRow}
-          // data={person}
         ></FormModal>
       )}
 
@@ -124,7 +124,6 @@ function App() {
             window.location.reload(true);
           }}
           editRow={editPersonRow}
-          // data={person}
           getOnePerson={getOnePersonRow}
           onePerson={editRow}
           personID={personID}

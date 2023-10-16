@@ -10,32 +10,6 @@ const FormModal = ({ onSubmit, closeModal }) => {
   const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
 
-//   const validateFormInputs =(inputValues) => {
-//     let errors ={};
-//     if (inputValues.firstName.length <2){
-//       errors.firstName = "First Name is too short"
-//     }
-//     if(inputValues.lastName.length < 2){
-//       errors.lastName = "Last Name is too short"
-//     }
-//     if (inputValues.setDateOfBirth === null || undefined){
-//       errors.dateOfBirth = "Please enter birthday in dd/mm/yyyy format"
-//     }
-
-//     if(inputValues.phoneNumber === null || undefined){
-//       errors.phoneNumber = "Please enter 10-digit phone number"
-//     }
-//     if(inputValues.address === "null" || undefined){
-//       errors.address = "please enter full address, number, street, city, state, zipcode"
-//     }
-
-//     return errors;
-//   }
-
-// const handleFormChangeErrors = (e) => {
-//   setFirstName(e.target.value)
-// }
-
   const handleFormModalSubmit = (e) => {
     //prevent refresh
     e.preventDefault();
@@ -49,7 +23,6 @@ const FormModal = ({ onSubmit, closeModal }) => {
       notes,
     };
 
-    // console.log(personRow)
     onSubmit(personRow);
   };
 
@@ -64,9 +37,7 @@ const FormModal = ({ onSubmit, closeModal }) => {
           <span className="red">*</span>Optional
         </p>
 
-        <form
-          onSubmit={handleFormModalSubmit}
-        >
+        <form onSubmit={handleFormModalSubmit}>
           {/* {data.map((item) => item.id)} */}
           <label htmlFor="firstName">First Name</label>
           <input

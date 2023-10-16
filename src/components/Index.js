@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Index.css";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 
-const Index = ({ data, getOnePerson, deleteRow, getPeople}) => {
-
+const Index = ({ data, getOnePerson, deleteRow, getPeople }) => {
   // pass the id data to the app component
   const handleEditRow = (id) => {
     getOnePerson(id);
-  }
+  };
 
   const handleDeleteRow = (id) => {
     deleteRow(id);
-    // refresh page to show that the person has been deleted
+    // re-render data to show that the person has been deleted
     getPeople();
   };
 

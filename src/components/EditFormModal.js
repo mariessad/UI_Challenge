@@ -3,21 +3,17 @@ import { PatternFormat } from "react-number-format";
 import "./EditFormModal.css";
 
 const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState(personID);
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
 
-// const handleDataValue = (value) => {
-//     setFirstName(value)
-
-// }
   const handleFormModalUpdate = (e) => {
     //prevent refresh
+    // if onChange is not fired in input, store the default value
     e.preventDefault();
-
     const personRow = {
       firstName,
       lastName,
@@ -26,7 +22,7 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
       address,
       notes,
     };
-// console.log(personRow)
+    console.log(personRow);
     editRow(personRow, personID);
   };
 
@@ -41,14 +37,10 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
           <span className="red">*</span>Optional
         </p>
 
-        <form
-          // if the edit icon has been clicked,
-          onSubmit={handleFormModalUpdate}
-        >
+        <form onSubmit={handleFormModalUpdate}>
           <label htmlFor="firstName">First Name</label>
           <input
             defaultValue={onePerson.firstName}
-            // value={onePerson.firstName}
             onChange={(e) => setFirstName(e.target.value)}
             type="text"
             name="firstName"
@@ -59,7 +51,6 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
           />
           <label htmlFor="lastName">Last Name</label>
           <input
-            // value={onePerson.lastName}
             defaultValue={onePerson.lastName}
             onChange={(e) => setLastName(e.target.value)}
             type="text"
@@ -72,7 +63,6 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
           <label htmlFor="dateOfBirth">Date of Birth</label>
           <input
             className="date-picker"
-            // value={onePerson.dateOfBirth}
             defaultValue={onePerson.dateOfBirth}
             onChange={(e) => setDateOfBirth(e.target.value)}
             type="date"
@@ -100,7 +90,6 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
 
           <label htmlFor="address">Address</label>
           <input
-            // value={onePerson.address}
             defaultValue={onePerson.address}
             onChange={(e) => setAddress(e.target.value)}
             type="text"
@@ -113,7 +102,6 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
             <span className="red">*</span>Notes
           </label>
           <textarea
-            // value={onePerson.notes}
             defaultValue={onePerson.notes}
             onChange={(e) => setNotes(e.target.value)}
             name="notes"
