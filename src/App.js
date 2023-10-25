@@ -76,14 +76,15 @@ function App() {
 
   // get one person doc by id
   const getOnePersonRow = async (id) => {
-    setOpenEditModal(true);
+    
     const personDoc = doc(db, "people", id);
     try {
       const personData = await getDoc(personDoc);
       const filteredPersonData = personData.data();
-      // give person data to edit form
+      // give person data to edit form 
       setEditRow(filteredPersonData);
       setPersonID(id);
+      setOpenEditModal(true);
     } catch (err) {
       console.log(err);
     }

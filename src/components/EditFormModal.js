@@ -3,7 +3,7 @@ import { PatternFormat } from "react-number-format";
 import "./FormModal.css";
 
 const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState(onePerson.firstName | "");
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -13,6 +13,7 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
   const handleFormModalUpdate = (e) => {
     //prevent refresh
     // if onChange is not fired in input, store the default value
+    console.log(firstName)
     e.preventDefault();
     const personRow = {
       firstName,
@@ -40,7 +41,8 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
         <form onSubmit={handleFormModalUpdate}>
           <label htmlFor="firstName">First Name</label>
           <input
-            defaultValue={onePerson.firstName}
+            // defaultValue={onePerson.firstName}
+            value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             type="text"
             name="firstName"
@@ -52,7 +54,7 @@ const EditFormModal = ({ closeModal, editRow, onePerson, personID }) => {
           <label htmlFor="lastName">Last Name</label>
           <input
             defaultValue={onePerson.lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={(e) => setLastName(...lastName,e.target.value)}
             type="text"
             name="lastName"
             id="lastName"
