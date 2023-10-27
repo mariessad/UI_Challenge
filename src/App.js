@@ -17,7 +17,7 @@ import "./App.css";
 
 function App() {
   const [person, setPerson] = useState([]);
-  const [editRow, setEditRow] = useState([]);
+  const [editRow, setEditRow] = useState();
   // open/close modal states
   const [openModal, setOpenModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
@@ -82,6 +82,7 @@ function App() {
       const personData = await getDoc(personDoc);
       const filteredPersonData = personData.data();
       // give person data to edit form
+      console.log(filteredPersonData);
       setEditRow(filteredPersonData);
       setPersonID(id);
     } catch (err) {
@@ -117,7 +118,7 @@ function App() {
         ></FormModal>
       )}
 
-      {openEditModal && (
+      {openEditModal && editRow &&(
         <EditFormModal
           closeModal={() => {
             setOpenEditModal(false);
